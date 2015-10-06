@@ -1,6 +1,6 @@
 <?php
 
-namespace SymfonyStandaloneForms;
+namespace SymfonySmartyStandaloneForms;
 
 use \Smarty;
 use \Smarty_Internal_Template;

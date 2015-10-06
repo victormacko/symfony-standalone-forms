@@ -1,6 +1,6 @@
 <?php
 
-namespace SymfonyStandaloneForms;
+namespace SymfonySmartyStandaloneForms;
 
 use Symfony\Component\Templating\TemplateReference;
 use Symfony\Component\Templating\TemplateNameParserInterface;
