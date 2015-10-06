@@ -1,4 +1,5 @@
 {
+	"name": "victormacko/symfony-smarty-standalone-forms",
 	"require": {
 		"symfony/http-foundation": ">=2.1",
 		"symfony/http-kernel": ">=2.1",
