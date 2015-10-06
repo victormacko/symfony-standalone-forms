@@ -17,7 +17,8 @@ use Symfony\Component\Form\Extension\Csrf\CsrfProvider\DefaultCsrfProvider;
 use Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationExtension;
 use Symfony\Component\HttpFoundation\Request;
 
-use \SymfonyStandaloneForms\FormHelperTrait;
+use \SymfonySmartyStandaloneForms\FormHelperTrait;
+use SymfonySmartyStandaloneForms\SmartyFormPlugins;
 
 // setup a class of some-sort which will include the form-helper-trait.
 // This could in-theory be a class which extends smarty itself if needed too.
@@ -95,7 +96,7 @@ $smarty->setCompileDir('/tmp/test-standalone-forms-templates_c/');
 $formController = new FormController();
 
 // register the form plugins with smarty, passing in the form helper which it talks to
-$plugins = new \SymfonyStandaloneForms\SmartyFormPlugins($formController->getFormHelper());
+$plugins = new SmartyFormPlugins($formController->getFormHelper());
 $plugins->registerFormPluginsWithSmarty($smarty);
 
 // give smarty some variables to play with to demonstrate everything works

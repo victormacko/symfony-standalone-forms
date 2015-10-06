@@ -15,8 +15,6 @@ use Symfony\Bundle\FrameworkBundle\Templating\Helper\TranslatorHelper;
 use Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper;
 use Symfony\Component\Form\Extension\Templating\TemplatingRendererEngine;
 use Symfony\Component\Form\FormRenderer;
-use Symfony\Component\Form\Form;
-
 
 /**
  * Class FormHelperTrait
@@ -50,25 +48,5 @@ trait FormHelperTrait
 		}
 
 		return $this->form_helper;
-	}
-
-	public function getFormErrorMessages(Form $form) {
-		$errors = array();
-
-		foreach ($form->getErrors() as $key => $error) {
-			if ($form->isRoot()) {
-				$errors['#'][] = $error->getMessage();
-			} else {
-				$errors[] = $error->getMessage();
-			}
-		}
-
-		foreach ($form->all() as $child) {
-			if (!$child->isValid()) {
-				$errors[$child->getName()] = $this->getFormErrorMessages($child);
-			}
-		}
-
-		return $errors;
 	}
 }
