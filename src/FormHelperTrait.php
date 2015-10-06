@@ -15,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Templating\Helper\TranslatorHelper;
 use Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper;
 use Symfony\Component\Form\Extension\Templating\TemplatingRendererEngine;
 use Symfony\Component\Form\FormRenderer;
+use \Exception;
 
 /**
  * Class FormHelperTrait
@@ -24,23 +25,32 @@ use Symfony\Component\Form\FormRenderer;
 trait FormHelperTrait
 {
 	protected $form_helper;
+	protected $symfonyVendorDir = null;
+
+	public function setSymfonyVendorDir($dir) {
+		if(realpath($dir) === false) {
+			throw new Exception('Symfony directory "' . $dir . '" doesnt exist');
+		}
+		$this->symfonyVendorDir = $dir;
+	}
 
 	public function getFormHelper() {
 		if(!$this->form_helper) {
 			// Set up requirements - hopefully we can facilitate this more in 2.2
 			$engine = new PhpEngine(new SimpleTemplateNameParser(realpath(__DIR__ . '/../views/Form')), new FilesystemLoader(array()));
 
-//set helpers
-			$vendorDir = __DIR__ . '/../vendor';
-			$formDir = $vendorDir . '/symfony/framework-bundle/Resources/views/Form';
+			//set helpers
+			$vendorDir = $this->symfonyVendorDir;
+
+			$formDir = $vendorDir . '/framework-bundle/Resources/views/Form';
 			$defaultThemes = [$formDir, __DIR__ . '/../views/Form'];
 
 			$form_helper = new FormHelper(new FormRenderer(new TemplatingRendererEngine($engine, $defaultThemes), null));
 
 			$translator = new Translator('en');
 			$translator->addLoader('xlf', new XliffFileLoader());
-			$translator->addResource('xlf', realpath($vendorDir . '/symfony/form/Resources/translations/validators.en.xlf'), 'en', 'validators');
-			$translator->addResource('xlf', realpath($vendorDir . '/symfony/validator/Resources/translations/validators.en.xlf'), 'en', 'validators');
+			$translator->addResource('xlf', realpath($vendorDir . '/form/Resources/translations/validators.en.xlf'), 'en', 'validators');
+			$translator->addResource('xlf', realpath($vendorDir . '/validator/Resources/translations/validators.en.xlf'), 'en', 'validators');
 
 			$engine->addHelpers(array($form_helper, new TranslatorHelper($translator)));
 

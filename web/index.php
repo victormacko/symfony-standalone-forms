@@ -94,6 +94,7 @@ $smarty->setCompileDir('/tmp/test-standalone-forms-templates_c/');
 
 // initiate our 'controller' (which is just a temp class which will hold our helper function)
 $formController = new FormController();
+$formController->setSymfonyVendorDir(__DIR__ . '/../vendor/symfony');
 
 // register the form plugins with smarty, passing in the form helper which it talks to
 $plugins = new SmartyFormPlugins($formController->getFormHelper());
