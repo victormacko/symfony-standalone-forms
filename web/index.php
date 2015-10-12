@@ -23,7 +23,18 @@ use SymfonySmartyStandaloneForms\SmartyFormPlugins;
 // setup a class of some-sort which will include the form-helper-trait.
 // This could in-theory be a class which extends smarty itself if needed too.
 class FormController {
-	use FormHelperTrait;
+	use FormHelperTrait {
+		getFormThemePaths as getFormThemePathsDefault;
+	}
+
+	// example of adding in your own paths...
+	protected function getFormThemePaths() {
+		$res = $this->getFormThemePathsDefault();
+
+		//$res[] = __DIR__ . '/path/to/views/';
+
+		return $res;
+	}
 }
 
 // create ourselves a form....;

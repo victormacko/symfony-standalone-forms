@@ -34,6 +34,18 @@ trait FormHelperTrait
 		$this->symfonyVendorDir = $dir;
 	}
 
+	/**
+	 * Get a list of paths to the form themes
+	 **/
+	protected function getFormThemePaths() {
+		$vendorDir = $this->symfonyVendorDir;
+
+		$formDir = $vendorDir . '/framework-bundle/Resources/views/Form';
+		$defaultThemes = [$formDir, __DIR__ . '/../views/Form'];
+
+		return $defaultThemes;
+	}
+
 	public function getFormHelper() {
 		if(!$this->form_helper) {
 			// Set up requirements - hopefully we can facilitate this more in 2.2
@@ -42,8 +54,7 @@ trait FormHelperTrait
 			//set helpers
 			$vendorDir = $this->symfonyVendorDir;
 
-			$formDir = $vendorDir . '/framework-bundle/Resources/views/Form';
-			$defaultThemes = [$formDir, __DIR__ . '/../views/Form'];
+			$defaultThemes = $this->getFormThemePaths();
 
 			$form_helper = new FormHelper(new FormRenderer(new TemplatingRendererEngine($engine, $defaultThemes), null));
 
