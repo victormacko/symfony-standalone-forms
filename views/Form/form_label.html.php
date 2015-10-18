@@ -1,14 +1,13 @@
 <?php if (false !== $label) { ?>
-	<?
+<?
 	$label_attr['class'] = isset($label_attr['class']) ? $label_attr['class'] : '';
-	if(!isset($type) || 'file' != $type) {
-		$label_attr['class'] = trim(
-			(isset($label_attr['class']) ? $label_attr['class'] : '') .
-			' control-label ' .
-			$view['form']->block($form, 'form_label_class')
-		);
-	}
-	?>
+
+	$label_attr['class'] = trim(
+		(isset($label_attr['class']) ? $label_attr['class'] : '') .
+		' control-label ' .
+		$view['form']->block($form, 'form_label_class')
+	);
+?>
 	<?php if ($required) { $label_attr['class'] = trim((isset($label_attr['class']) ? $label_attr['class'] : '').' required'); } ?>
 	<?php if (!$compound) { $label_attr['for'] = $id; } ?>
 	<?php if (!$label) { $label = isset($label_format)
