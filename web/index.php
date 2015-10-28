@@ -76,6 +76,12 @@ $form = $formFactory->createBuilder('form', null, ['method' => 'POST', 'extra_fi
 	->add('gender', 'choice', array(
 		'choices' => array('m' => 'Male', 'f' => 'Female'),
 	))
+	->add('gender_checkbox_inline', 'choice', ['expanded' => true, 'multiple' => true, 'choices' => [
+		'm' => 'Boy', 'f' => 'Girl'], 'label_attr' => ['class' => 'checkbox-inline']])
+	->add('gender_inline', 'choice', ['expanded' => true, 'choices' => [
+		'm' => 'Boy', 'f' => 'Girl'], 'label_attr' => ['class' => 'radio-inline']])
+	->add('gender_inline_no_label', 'choice', ['expanded' => true, 'choices' => [
+		'm' => 'Boy', 'f' => 'Girl'], 'label_attr' => ['class' => 'radio-inline'], 'label' => false])
 	->add('newsletter', 'checkbox', array(
 		'empty_data' => '0',
 		'required' => false,
