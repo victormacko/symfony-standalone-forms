@@ -31,7 +31,16 @@ class SmartyFormPlugins
 	}
 
 	public function formLabel(array $params, Smarty_Internal_Template $smartyTemplate) {
-		return $this->formCall('label', $params, $smartyTemplate);
+		$form = $params['form'];
+		unset($params['form']);
+
+		$label = null;
+		if(array_key_exists('label', $params)) {
+			$label = $params['label'];
+			unset($params['label']);
+		}
+
+		return $this->formHelper->label($form, $label, $params);
 	}
 
 	public function formWidget(array $params, Smarty_Internal_Template $smartyTemplate) {

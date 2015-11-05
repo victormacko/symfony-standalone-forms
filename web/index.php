@@ -62,6 +62,7 @@ $form = $formFactory->createBuilder('form', null, ['method' => 'POST', 'extra_fi
 		),
 	))
 	->add('lastName', 'text', array(
+		'label' => 'My last name',
 		'constraints' => array(
 
 		),
@@ -83,6 +84,11 @@ $form = $formFactory->createBuilder('form', null, ['method' => 'POST', 'extra_fi
 	->add('gender_inline_no_label', 'choice', ['expanded' => true, 'choices' => [
 		'm' => 'Boy', 'f' => 'Girl'], 'label_attr' => ['class' => 'radio-inline'], 'label' => false])
 	->add('newsletter', 'checkbox', array(
+		'empty_data' => '0',
+		'required' => false,
+	))
+	->add('my_long_temp_field', 'text', array(
+		'label' => 'Abcd',
 		'empty_data' => '0',
 		'required' => false,
 	))

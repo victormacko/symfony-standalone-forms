@@ -21,6 +21,22 @@
 		{* novalidate turns off html5 validation, so symfony forms solely has to handle it *}
 		{form_start form=$form attr=['novalidate' => 'novalidate']}
 		{form_row form=$form.email help="abcd here is some help text."}
+
+		Custom row...
+		<div class="form-group">
+			{form_label form=$form.my_long_temp_field}
+			<div class="col-sm-10">
+				{form_widget form=$form.my_long_temp_field}
+			</div>
+		</div>
+		Custom row...
+		<div class="form-group">
+			{form_label form=$form.my_long_temp_field label="hi"}
+			<div class="col-sm-10">
+				{form_widget form=$form.my_long_temp_field}
+			</div>
+		</div>
+
 		{form_widget form=$form}
 		{form_end form=$form}
 	</div>
