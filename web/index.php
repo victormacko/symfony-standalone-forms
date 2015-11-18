@@ -108,6 +108,12 @@ if ($form->isValid()) {
 
 $formView = $form->createView();
 
+$form2 = clone $form;
+$formView2 = $form2->createView();
+
+$form3 = clone $form;
+$formView3 = $form3->createView();
+
 // ------------------------------------------------------------------
 
 // initiate smarty & set basic stuff to get it going
@@ -124,10 +130,11 @@ $plugins = new SmartyFormPlugins($formController->getFormHelper());
 $plugins->registerFormPluginsWithSmarty($smarty);
 
 // give smarty some variables to play with to demonstrate everything works
-$smarty->assign(['form' => $formView, 'isValid' => $form->isValid(), 'isSubmitted' => $form->isSubmitted()]);
+$smarty->assign(['form' => $formView, 'form2' => $formView2, 'form3' => $formView3, 'isValid' => $form->isValid(), 'isSubmitted' => $form->isSubmitted()]);
 
 // show the form as it should be.
 $smarty->display('test.tpl');
+
 
 echo "<hr />\n\n\n";
 
