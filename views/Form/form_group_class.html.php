@@ -1,1 +1,1 @@
-col-sm-10
+<?= isset($form_group_class) && !empty($form_group_class) ? $form_group_class : 'col-sm-10' ?>

@@ -1,1 +1,1 @@
-col-sm-2
+<?= isset($form_label_class) && !empty($form_label_class) ? $form_label_class : 'col-sm-2' ?>

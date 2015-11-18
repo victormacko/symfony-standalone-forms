@@ -40,5 +40,23 @@
 		{form_widget form=$form}
 		{form_end form=$form}
 	</div>
+
+	<div class="row">
+		<h2>Form 2</h2>
+		{form_start form=$form2}
+		{form_row form=$form2.firstName form_label_class="col-sm-6" form_group_class="col-sm-6"}
+		{form_row form=$form2.lastName}
+		{form_rest form=$form2 form_label_class="col-sm-4" form_group_class="col-sm-8"}
+
+		{form_end form=$form2}
+	</div>
+
+	<div class="row">
+		<h2>Form 3</h2>
+		{form_start form=$form3}
+		{form_widget form=$form3 form_label_class="col-sm-7" form_group_class="col-sm-5"}
+
+		{form_end form=$form3}
+	</div>
 </div>
 
