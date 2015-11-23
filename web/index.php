@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationExtension;
 use Symfony\Component\HttpFoundation\Request;
 
 use \SymfonySmartyStandaloneForms\FormHelperTrait;
+use \SymfonySmartyStandaloneForms\FormErrorsTrait;
 use SymfonySmartyStandaloneForms\SmartyFormPlugins;
 
 // setup a class of some-sort which will include the form-helper-trait.
@@ -26,6 +27,7 @@ class FormController {
 	use FormHelperTrait {
 		getFormThemePaths as getFormThemePathsDefault;
 	}
+	use FormErrorsTrait;
 
 	// example of adding in your own paths...
 	protected function getFormThemePaths() {
@@ -54,7 +56,7 @@ $formFactory = Forms::createFormFactoryBuilder()
 Request::enableHttpMethodParameterOverride();
 
 // Create our first form!
-$form = $formFactory->createBuilder('form', null, ['method' => 'POST', 'extra_fields_message' => 'This form should not contain extra fields - "{{ extra_fields }}"'])
+$formBuilder = $formFactory->createBuilder('form', null, ['method' => 'POST', 'extra_fields_message' => 'This form should not contain extra fields - "{{ extra_fields }}"'])
 	->add('firstName', 'text', array(
 		'constraints' => array(
 			new NotBlank(),
@@ -67,11 +69,13 @@ $form = $formFactory->createBuilder('form', null, ['method' => 'POST', 'extra_fi
 
 		),
 	))
+	->add('complex', 'collection', ['compound' => true, 'inherit_data' => true])
 	->add('email', 'email', array(
 		'constraints' => array(
 			new NotBlank(),
 			new \Symfony\Component\Validator\Constraints\Email(),
-			//        new MinLength(4),
+			new Length(['max' => 4]),
+			new Length(['max' => 5]),
 		),
 	))
 	->add('gender', 'choice', array(
@@ -92,8 +96,10 @@ $form = $formFactory->createBuilder('form', null, ['method' => 'POST', 'extra_fi
 		'empty_data' => '0',
 		'required' => false,
 	))
-	->add('go', 'submit')
-	->getForm();
+	->add('go', 'submit');
+$formBuilder->get('complex')->add('my_name', 'text', ['constraints' => [new NotBlank()]])->add('lName', 'text');
+
+$form = $formBuilder->getForm();
 
 $request = Request::createFromGlobals();
 
@@ -142,6 +148,11 @@ echo "<hr />\n\n\n";
 $formView = $form->createView();
 
 $form_helper = $formController->getFormHelper();
-echo 'Start: ' . $form_helper->start($formView);
-echo 'Fields: ' . $form_helper->rest($formView);
-echo 'End: ' . $form_helper->end($formView);
+echo 'Start: ' . $form_helper->start($formView) . "\n";
+echo 'Fields: ' . $form_helper->rest($formView) . "\n";
+echo 'End: ' . $form_helper->end($formView) . "<br />\n";
+
+
+echo 'Label: ' . $form_helper->humanize('break_') . "<br />\n";
+echo 'errors (array): ' . print_r($formController->getFormErrorMessagesAsStrings($form, $form_helper), true) . "<hr />\n";
+echo 'errors (html): ' . $formController->getFormErrorMessagesAsHtml($form, $form_helper, $formView) . "<hr />\n";
