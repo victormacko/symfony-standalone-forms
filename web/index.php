@@ -155,4 +155,4 @@ echo 'End: ' . $form_helper->end($formView) . "<br />\n";
 
 echo 'Label: ' . $form_helper->humanize('break_') . "<br />\n";
 echo 'errors (array): ' . print_r($formController->getFormErrorMessagesAsStrings($form, $form_helper), true) . "<hr />\n";
-echo 'errors (html): ' . $formController->getFormErrorMessagesAsHtml($form, $form_helper, $formView) . "<hr />\n";
+echo 'errors (html): ' . $formController->getFormErrorMessagesAsHtml($form, $form_helper, $formView, ['include_container' => false, 'list_item_icon' => false]) . "<hr />\n";
