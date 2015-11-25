@@ -57,11 +57,31 @@ trait FormErrorsTrait
 		return $errors;
 	}
 
+	/**
+	 * @param Form $form
+	 * @param FormHelper $formHelper
+	 * @return array
+	 */
 	public function getFormErrorMessagesAsStrings(Form $form, FormHelper $formHelper) {
 		$errors = $this->getFormErrorMessagesWithLabels($form, $formHelper);
 		$errors = $this->getFormErrorMessagesAsSingleLevelArray($errors);
 		
 		return $errors;
+	}
+
+	/**
+	 * @param Form $form
+	 * @param FormHelper $formHelper
+	 * @return string
+	 */
+	public function getFormErrorMessagesAsString(Form $form, FormHelper $formHelper) {
+		$str = '';
+		foreach($this->getFormErrorMessagesAsStrings($form, $formHelper) as $fieldName => $message) {
+			$message = trim($message, '.');
+			$str .= $fieldName . ' - ' . $message . ', ';
+		}
+
+		return trim($str, ', ');
 	}
 
 	private function getFormErrorMessagesAsSingleLevelArray(array $arr, $depth = 0) {
