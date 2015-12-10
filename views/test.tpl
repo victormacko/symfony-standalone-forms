@@ -3,9 +3,19 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./form.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+$(function() {
+	$('[data-toggle="tooltip"]').tooltip()
+});
+</script>
 
 <div class="container">
 	<div class="row">
@@ -20,7 +30,8 @@
 
 		{* novalidate turns off html5 validation, so symfony forms solely has to handle it *}
 		{form_start form=$form attr=['novalidate' => 'novalidate']}
-		{form_row form=$form.email help="abcd here is some help text."}
+		{form_row form=$form.firstName help="abcd here is some help text." input_icon=['fa fa-user', 'tooltip' => 'Enter your name', 'position' => 'left']}
+		{form_row form=$form.email help="abcd here is some help text." input_icon=['fa fa-envelope']}
 
 		Custom row...
 		<div class="form-group">

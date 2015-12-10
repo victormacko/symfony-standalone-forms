@@ -69,6 +69,13 @@ $formBuilder = $formFactory->createBuilder('form', null, ['method' => 'POST', 'e
 
 		),
 	))
+	->add('phone', new \SymfonySmartyStandaloneForms\Type\TextType(), array(
+			'input_icon' => 'fa fa-phone',
+			'help' => 'This is your preferred phone number.',
+			'constraints' => array(
+
+			),
+	))
 	->add('complex', 'collection', ['compound' => true, 'inherit_data' => true])
 	->add('email', 'email', array(
 		'constraints' => array(

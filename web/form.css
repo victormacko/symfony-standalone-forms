@@ -1,0 +1,43 @@
+.input-icon.input-icon-sm>i {
+	margin-top: 8px;
+	font-size: 13px;
+}
+.input-icon.right>i {
+	right: 8px;
+	float: right;
+}
+.input-icon {
+	position: relative;
+	left: 0;
+}
+
+.input-icon > i {
+	color: #ccc;
+	display: block;
+	position: absolute;
+	margin: 11px 2px 4px 10px;
+	z-index: 3;
+	width: 16px;
+	font-size: 16px;
+	text-align: center; }
+
+.has-success .input-icon > i {
+	color: #36c6d3; }
+.has-warning .input-icon > i {
+	color: #F1C40F; }
+.has-info .input-icon > i {
+	color: #659be0; }
+.has-error .input-icon > i {
+	color: #ed6b75; }
+
+
+.input-icon.right {
+	left: auto;
+	right: 0; }
+.input-icon>.form-control {
+	padding-left: 33px;
+}
+.input-icon.right>.form-control {
+	padding-right: 33px;
+	padding-left: 12px;
+}
