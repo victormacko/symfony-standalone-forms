@@ -2,6 +2,9 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 /**
  * This is a demo of the 'controller', which sets up some backend vars first,
  * then creates a form, then outputs it.
@@ -70,6 +73,13 @@ $formBuilder = $formFactory->createBuilder('form', null, ['method' => 'POST', 'e
 		),
 	))
 	->add('phone', new \SymfonySmartyStandaloneForms\Type\TextType(), array(
+			'input_icon' => 'fa fa-phone',
+			'help' => 'This is your preferred phone number.',
+			'constraints' => array(
+
+			),
+	))
+	->add('phone2', \SymfonySmartyStandaloneForms\Type\TextType::class, array(
 			'input_icon' => 'fa fa-phone',
 			'help' => 'This is your preferred phone number.',
 			'constraints' => array(
