@@ -8,9 +8,6 @@
 
 namespace SymfonySmartyStandaloneForms\Type;
 
-use Frontend\Controller\AbstractController;
-use Frontend\Form\DataTransformer\DataObjToNumberTransformer;
-use Frontend\Form\Type\FieldType\TokenInputChoiceType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
