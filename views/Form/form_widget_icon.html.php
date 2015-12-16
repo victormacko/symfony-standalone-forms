@@ -19,10 +19,12 @@ if(is_array($input_icon)) {
 
 // icon sizing
 if(!isset($input_icon_size)) {
-	if(isset($attr['class']) && strpos($attr['class'], 'sm') !== false) {
-		$inputIconSize = 'input-icon-sm';
-	} else if(strpos($attr['class'], 'lg') !== false) {
-		$inputIconSize = 'input-icon-lg';
+	if(isset($attr['class'])) {
+		if (strpos($attr['class'], 'sm') !== false) {
+			$inputIconSize = 'input-icon-sm';
+		} else if (strpos($attr['class'], 'lg') !== false) {
+			$inputIconSize = 'input-icon-lg';
+		}
 	}
 }
 

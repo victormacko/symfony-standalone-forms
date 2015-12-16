@@ -18,3 +18,6 @@
     <?php endif ?>
     <?php echo $view['form']->block($form, 'choice_widget_options', array('choices' => $choices)) ?>
 </select>
+<?php if (isset($help)) : ?>
+    <span class="help-block"><?php echo $view->escape($help) ?></span>
+<?php endif ?>

@@ -58,28 +58,42 @@ $formFactory = Forms::createFormFactoryBuilder()
 
 Request::enableHttpMethodParameterOverride();
 
+use SymfonySmartyStandaloneForms\Type\TextType;
+use SymfonySmartyStandaloneForms\Type\ChoiceType;
+use SymfonySmartyStandaloneForms\Type\YesNoChoiceType;
+use SymfonySmartyStandaloneForms\Type\CheckboxType;
+use SymfonySmartyStandaloneForms\Type\EmailType;
+
 // Create our first form!
 $formBuilder = $formFactory->createBuilder('form', null, ['method' => 'POST', 'extra_fields_message' => 'This form should not contain extra fields - "{{ extra_fields }}"'])
-	->add('firstName', 'text', array(
+	->add('firstName', TextType::class, array(
 		'constraints' => array(
 			new NotBlank(),
 			new Length(['min' => 4]),
 		),
 	))
-	->add('lastName', 'text', array(
+	->add('lastName', TextType::class, array(
 		'label' => 'My last name',
 		'constraints' => array(
 
 		),
+		'help' => 'last here please',
 	))
-	->add('phone', new \SymfonySmartyStandaloneForms\Type\TextType(), array(
+	->add('like_chocolate', YesNoChoiceType::class, array(
+		'label' => 'Like chocolate?',
+		'help' => 'this is some help',
+		'constraints' => array(
+
+		),
+	))
+	->add('phone', TextType::class, array(
 			'input_icon' => 'fa fa-phone',
 			'help' => 'This is your preferred phone number.',
 			'constraints' => array(
 
 			),
 	))
-	->add('phone2', \SymfonySmartyStandaloneForms\Type\TextType::class, array(
+	->add('phone2', TextType::class, array(
 			'input_icon' => 'fa fa-phone',
 			'help' => 'This is your preferred phone number.',
 			'constraints' => array(
@@ -87,7 +101,8 @@ $formBuilder = $formFactory->createBuilder('form', null, ['method' => 'POST', 'e
 			),
 	))
 	->add('complex', 'collection', ['compound' => true, 'inherit_data' => true])
-	->add('email', 'email', array(
+	->add('email', EmailType::class, array(
+		'help' => 'Email address here please',
 		'constraints' => array(
 			new NotBlank(),
 			new \Symfony\Component\Validator\Constraints\Email(),
@@ -95,21 +110,24 @@ $formBuilder = $formFactory->createBuilder('form', null, ['method' => 'POST', 'e
 			new Length(['max' => 5]),
 		),
 	))
-	->add('gender', 'choice', array(
+	->add('gender', ChoiceType::class, array(
 		'choices' => array('m' => 'Male', 'f' => 'Female'),
+		'help' => 'Gender here please',
 	))
-	->add('gender_checkbox_inline', 'choice', ['expanded' => true, 'multiple' => true, 'choices' => [
+	->add('gender_checkbox_inline', ChoiceType::class, ['expanded' => true, 'multiple' => true, 'choices' => [
 		'm' => 'Boy', 'f' => 'Girl'], 'label_attr' => ['class' => 'checkbox-inline']])
-	->add('gender_inline', 'choice', ['expanded' => true, 'choices' => [
+	->add('gender_inline', ChoiceType::class, ['expanded' => true, 'choices' => [
 		'm' => 'Boy', 'f' => 'Girl'], 'label_attr' => ['class' => 'radio-inline']])
-	->add('gender_inline_no_label', 'choice', ['expanded' => true, 'choices' => [
+	->add('gender_inline_no_label', ChoiceType::class, ['expanded' => true, 'choices' => [
 		'm' => 'Boy', 'f' => 'Girl'], 'label_attr' => ['class' => 'radio-inline'], 'label' => false])
-	->add('newsletter', 'checkbox', array(
+	->add('newsletter', CheckboxType::class, array(
 		'empty_data' => '0',
 		'required' => false,
+		'help' => 'Tick to get candy'
 	))
-	->add('my_long_temp_field', 'text', array(
+	->add('my_long_temp_field', TextType::class, array(
 		'label' => 'Abcd',
+		'help' => 'Fav colour?',
 		'empty_data' => '0',
 		'required' => false,
 	))
