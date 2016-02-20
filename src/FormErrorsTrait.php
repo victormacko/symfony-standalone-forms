@@ -101,6 +101,10 @@ trait FormErrorsTrait
 			}
 		}
 
+		$arr = array_filter($arr, function($val) {
+			return $val != '' || is_array($val);
+		});
+
 		return $arr;
 	}
 
