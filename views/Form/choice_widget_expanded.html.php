@@ -9,3 +9,6 @@
         'translation_domain' => $choice_translation_domain)) ?>
 <?php endforeach ?>
 </div>
+<?php if (isset($help)) : ?>
+    <span class="help-block"><?php echo $view->escape($help) ?></span>
+<?php endif ?>
