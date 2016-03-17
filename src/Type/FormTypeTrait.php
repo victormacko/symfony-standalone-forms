@@ -23,6 +23,7 @@ trait FormTypeTrait
 			echo get_called_class() . ' not configured';
 			print_r(array_keys($options));
 		}
+
 		$view->vars['help'] = $options['help'];
 		$view->vars['input_icon'] = $options['input_icon'];
 	}
