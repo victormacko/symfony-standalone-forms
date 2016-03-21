@@ -6,4 +6,6 @@ if(!isset($type) || 'file' != $type) {
 //print_r($attr);
 ?>
 <textarea <?php echo $view['form']->block($form, 'widget_attributes', ['attr' => $attr]) ?>><?php echo $view->escape($value) ?></textarea>
-
+<?php if (isset($help)) : ?>
+	<span class="help-block"><?php echo $view->escape($help) ?></span>
+<?php endif ?>
