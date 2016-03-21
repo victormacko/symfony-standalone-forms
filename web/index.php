@@ -63,6 +63,8 @@ use SymfonySmartyStandaloneForms\Type\ChoiceType;
 use SymfonySmartyStandaloneForms\Type\YesNoChoiceType;
 use SymfonySmartyStandaloneForms\Type\CheckboxType;
 use SymfonySmartyStandaloneForms\Type\EmailType;
+use SymfonySmartyStandaloneForms\Type\MoneyType;
+use SymfonySmartyStandaloneForms\Type\PercentType;
 
 // Create our first form!
 $formBuilder = $formFactory->createBuilder('form', null, ['method' => 'POST', 'extra_fields_message' => 'This form should not contain extra fields - "{{ extra_fields }}"'])
@@ -99,6 +101,19 @@ $formBuilder = $formFactory->createBuilder('form', null, ['method' => 'POST', 'e
 			'constraints' => array(
 
 			),
+	))
+	->add('money_box', MoneyType::class, array(
+		'input_icon' => 'fa fa-phone',
+		'help' => 'This is your preferred phone number.',
+		'constraints' => array(
+
+		),
+	))
+	->add('percent_box', PercentType::class, array(
+		'help' => 'This is your preferred phone number.',
+		'constraints' => array(
+
+		),
 	))
 	->add('complex', 'collection', ['compound' => true, 'inherit_data' => true])
 	->add('email', EmailType::class, array(
