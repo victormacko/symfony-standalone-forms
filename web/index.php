@@ -129,6 +129,11 @@ $formBuilder = $formFactory->createBuilder('form', null, ['method' => 'POST', 'e
 		'choices' => array('m' => 'Male', 'f' => 'Female'),
 		'help' => 'Gender here please',
 	))
+	->add('gender_styled', ChoiceType::class, array(
+		'choices' => array('m' => 'Male', 'f' => 'Female'),
+		'attr' => ['title' => 'abcd', 'class' => 'my-css-class'],
+		'help' => 'Gender here please',
+	))
 	->add('gender_checkbox_inline', ChoiceType::class, ['expanded' => true, 'multiple' => true, 'choices' => [
 		'm' => 'Boy', 'f' => 'Girl'], 'label_attr' => ['class' => 'checkbox-inline']])
 	->add('gender_inline', ChoiceType::class, ['expanded' => true, 'choices' => [
