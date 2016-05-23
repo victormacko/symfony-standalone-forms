@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\Extension\Csrf\CsrfExtension;
-use Symfony\Component\Form\Extension\Csrf\CsrfProvider\DefaultCsrfProvider;
+
 use Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationExtension;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -48,10 +48,16 @@ $validator = Validation::createValidator();
 // Overwrite this with your own secret
 $csrfSecret = '123456';
 
+$session = new \Symfony\Component\HttpFoundation\Session\Session();
+
+$csrfGenerator = new \Symfony\Component\Security\Csrf\TokenGenerator\UriSafeTokenGenerator();
+$csrfStorage = new \Symfony\Component\Security\Csrf\TokenStorage\SessionTokenStorage($session);
+$csrfManager = new \Symfony\Component\Security\Csrf\CsrfTokenManager($csrfGenerator, $csrfStorage);
+
 // Set up the form factory with all desired extensions
 $formFactory = Forms::createFormFactoryBuilder()
 	->addExtension(new HttpFoundationExtension())
-	->addExtension(new CsrfExtension(new DefaultCsrfProvider($csrfSecret)))
+	->addExtension(new CsrfExtension($csrfManager))
 	//->addExtension(new TemplatingExtension($engine, null, $defaultThemes))
 	->addExtension(new ValidatorExtension($validator))
 	->getFormFactory();
@@ -67,7 +73,7 @@ use SymfonySmartyStandaloneForms\Type\MoneyType;
 use SymfonySmartyStandaloneForms\Type\PercentType;
 
 // Create our first form!
-$formBuilder = $formFactory->createBuilder('form', null, ['method' => 'POST', 'extra_fields_message' => 'This form should not contain extra fields - "{{ extra_fields }}"'])
+$formBuilder = $formFactory->createBuilder(\Symfony\Component\Form\Extension\Core\Type\FormType::class, null, ['method' => 'POST', 'extra_fields_message' => 'This form should not contain extra fields - "{{ extra_fields }}"'])
 	->add('firstName', TextType::class, array(
 		'constraints' => array(
 			new NotBlank(),
@@ -115,7 +121,7 @@ $formBuilder = $formFactory->createBuilder('form', null, ['method' => 'POST', 'e
 
 		),
 	))
-	->add('complex', 'collection', ['compound' => true, 'inherit_data' => true])
+	->add('complex', \Symfony\Component\Form\Extension\Core\Type\CollectionType::class, ['compound' => true, 'inherit_data' => true])
 	->add('email', EmailType::class, array(
 		'help' => 'Email address here please',
 		'constraints' => array(
@@ -151,8 +157,8 @@ $formBuilder = $formFactory->createBuilder('form', null, ['method' => 'POST', 'e
 		'empty_data' => '0',
 		'required' => false,
 	))
-	->add('go', 'submit');
-$formBuilder->get('complex')->add('my_name', 'text', ['constraints' => [new NotBlank()]])->add('lName', 'text');
+	->add('go', \Symfony\Component\Form\Extension\Core\Type\SubmitType::class);
+$formBuilder->get('complex')->add('my_name', TextType::class, ['constraints' => [new NotBlank()]])->add('lName', TextType::class);
 
 $form = $formBuilder->getForm();
 
