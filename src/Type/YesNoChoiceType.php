@@ -30,7 +30,6 @@ class YesNoChoiceType extends ChoiceType
 
 		$resolver->setDefaults([
 			'choices' => array_combine($yesNoList, $yesNoList),
-			'choices_as_values' => true,
 			'expanded' => true,
 		]);
 	}
