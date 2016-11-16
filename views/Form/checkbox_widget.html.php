@@ -12,4 +12,7 @@ if(strpos($parent_label_class, 'checkbox-inline') !== false) {	?>
 	<div class="checkbox">
 		<?= $view['form']->block($form, 'checkbox_label', ['widget' => $parent])	?>
 	</div>
-<?	}
+<?	}	?>
+<?php if (isset($help)) : ?>
+	<span class="help-block"><?php echo $view->escape($help) ?></span>
+<?php endif ?>
