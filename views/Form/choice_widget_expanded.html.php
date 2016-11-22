@@ -1,5 +1,5 @@
 <?  if(isset($label_attr['class']) && strpos($label_attr['class'], '-inline') !== false) {     ?>
-<div class="control-group">
+<div class="control-group"<?= $view['form']->block($form, 'widget_attributes') ?>>
     <?  } else { ?>
     <div <?php echo $view['form']->block($form, 'widget_container_attributes') ?>>
         <?  } ?>
