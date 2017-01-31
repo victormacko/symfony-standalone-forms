@@ -5,6 +5,8 @@ namespace SymfonySmartyStandaloneForms;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormView;
 use Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class FormErrorsTrait
@@ -13,6 +15,18 @@ use Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper;
  */
 trait FormErrorsTrait
 {
+	/**
+	 * @param Form $form
+	 * @return JsonResponse
+	 */
+	protected function getFormErrorJsonResponse(Form $form) {
+		return new JsonResponse(['error' => true, 'errors' => $this->getFormErrorMessages($form)], Response::HTTP_UNPROCESSABLE_ENTITY);
+	}
+	
+	/**
+	 * @param Form $form
+	 * @return array
+	 */
 	public function getFormErrorMessages(Form $form) {
 		$errors = array();
 
@@ -32,7 +46,12 @@ trait FormErrorsTrait
 
 		return $errors;
 	}
-
+	
+	/**
+	 * @param Form $form
+	 * @param FormHelper $formHelper
+	 * @return array
+	 */
 	public function getFormErrorMessagesWithLabels(Form $form, FormHelper $formHelper) {
 		$errors = array();
 
@@ -83,7 +102,12 @@ trait FormErrorsTrait
 
 		return trim($str, ', ');
 	}
-
+	
+	/**
+	 * @param array $arr
+	 * @param int $depth
+	 * @return array
+	 */
 	private function getFormErrorMessagesAsSingleLevelArray(array $arr, $depth = 0) {
 		$depth++;
 		foreach($arr as $key => $arrVal) {
@@ -107,7 +131,14 @@ trait FormErrorsTrait
 
 		return $arr;
 	}
-
+	
+	/**
+	 * @param Form $form
+	 * @param FormHelper $formHelper
+	 * @param FormView $formView
+	 * @param array $variables
+	 * @return string
+	 */
 	public function getFormErrorMessagesAsHtml(Form $form, FormHelper $formHelper, FormView $formView, array $variables = array()) {
 		$errors = $this->getFormErrorMessagesAsStrings($form, $formHelper);
 		$variables['errors'] = $errors;
