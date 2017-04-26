@@ -25,7 +25,9 @@ trait FormTypeTrait
 		}
 
 		$view->vars['help'] = $options['help'];
+		
 		$view->vars['input_icon'] = $options['input_icon'];
+		$view->vars['input_addon'] = $options['input_addon'];
 	}
 
 	public function configureOptions(OptionsResolver $resolver)
@@ -35,6 +37,7 @@ trait FormTypeTrait
 		$resolver->setDefaults(array(
 			'help' => null,
 			'input_icon' => null,
+			'input_addon' => null,
 		));
 	}
 }
