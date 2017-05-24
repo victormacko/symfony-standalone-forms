@@ -8,5 +8,5 @@ if(!$text && !$icon) {
 }
 
 ?>
-<span class="input-group-addon"><?= $text ?><?= $icon ? '<i class="' . $icon . '"></i>' : '' ?></span>
+<span class="input-group-addon<?= $text && $icon ? ' text-and-icon' : '' ?>"><?= $text ?><?= $icon ? '<i class="' . $icon . '"></i>' : '' ?></span>
 <?php
