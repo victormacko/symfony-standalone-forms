@@ -76,7 +76,7 @@ class VoltFormHelper
 			$helperObj = new static();
 			
 			if(!$symfonyVendorDir) {
-				$symfonyVendorDir = __DIR__ . '/../../vendor/symfony';
+				$symfonyVendorDir = __DIR__ . '/../../../../vendor/symfony';
 			}
 			
 			$helperObj->setSymfonyVendorDir($symfonyVendorDir);
