@@ -1,6 +1,6 @@
 <?php
 
-namespace SymfonySmartyStandaloneForms;
+namespace SymfonyStandaloneForms;
 
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormView;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Class FormErrorsTrait
  * Helper trait to get form error messages
- * @package SymfonySmartyStandaloneForms
+ * @package SymfonyStandaloneForms
  */
 trait FormErrorsTrait
 {

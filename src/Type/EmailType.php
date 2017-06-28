@@ -1,6 +1,6 @@
 <?php
 
-namespace SymfonySmartyStandaloneForms\Type;
+namespace SymfonyStandaloneForms\Type;
 
 use Symfony\Component\Form\Extension\Core\Type\EmailType as ParentEmailType;
 use Symfony\Component\OptionsResolver\OptionsResolver;

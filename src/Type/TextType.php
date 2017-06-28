@@ -1,6 +1,6 @@
 <?php
 
-namespace SymfonySmartyStandaloneForms\Type;
+namespace SymfonyStandaloneForms\Type;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType as ParentTextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;

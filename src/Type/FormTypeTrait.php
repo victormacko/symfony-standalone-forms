@@ -6,7 +6,7 @@
  * Time: 12:40 PM
  */
 
-namespace SymfonySmartyStandaloneForms\Type;
+namespace SymfonyStandaloneForms\Type;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 

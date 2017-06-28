@@ -20,9 +20,9 @@ use Symfony\Component\Form\Extension\Csrf\CsrfExtension;
 use Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationExtension;
 use Symfony\Component\HttpFoundation\Request;
 
-use \SymfonySmartyStandaloneForms\FormHelperTrait;
-use \SymfonySmartyStandaloneForms\FormErrorsTrait;
-use SymfonySmartyStandaloneForms\SmartyFormPlugins;
+use \SymfonyStandaloneForms\FormHelperTrait;
+use \SymfonyStandaloneForms\FormErrorsTrait;
+use SymfonyStandaloneForms\SmartyFormPlugins;
 
 // setup a class of some-sort which will include the form-helper-trait.
 // This could in-theory be a class which extends smarty itself if needed too.
@@ -64,13 +64,13 @@ $formFactory = Forms::createFormFactoryBuilder()
 
 Request::enableHttpMethodParameterOverride();
 
-use SymfonySmartyStandaloneForms\Type\TextType;
-use SymfonySmartyStandaloneForms\Type\ChoiceType;
-use SymfonySmartyStandaloneForms\Type\YesNoChoiceType;
-use SymfonySmartyStandaloneForms\Type\CheckboxType;
-use SymfonySmartyStandaloneForms\Type\EmailType;
-use SymfonySmartyStandaloneForms\Type\MoneyType;
-use SymfonySmartyStandaloneForms\Type\PercentType;
+use SymfonyStandaloneForms\Type\TextType;
+use SymfonyStandaloneForms\Type\ChoiceType;
+use SymfonyStandaloneForms\Type\YesNoChoiceType;
+use SymfonyStandaloneForms\Type\CheckboxType;
+use SymfonyStandaloneForms\Type\EmailType;
+use SymfonyStandaloneForms\Type\MoneyType;
+use SymfonyStandaloneForms\Type\PercentType;
 
 // Create our first form!
 $formBuilder = $formFactory->createBuilder(\Symfony\Component\Form\Extension\Core\Type\FormType::class, null, ['method' => 'POST', 'extra_fields_message' => 'This form should not contain extra fields - "{{ extra_fields }}"'])

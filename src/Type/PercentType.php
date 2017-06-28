@@ -1,6 +1,6 @@
 <?php
 
-namespace SymfonySmartyStandaloneForms\Type;
+namespace SymfonyStandaloneForms\Type;
 
 use Symfony\Component\Form\Extension\Core\Type\PercentType as ParentPercentType;
 use Symfony\Component\OptionsResolver\OptionsResolver;

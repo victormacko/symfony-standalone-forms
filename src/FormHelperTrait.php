@@ -1,6 +1,6 @@
 <?php
 
-namespace SymfonySmartyStandaloneForms;
+namespace SymfonyStandaloneForms;
 
 use Smarty;
 
@@ -26,7 +26,11 @@ trait FormHelperTrait
 {
 	protected $form_helper;
 	protected $symfonyVendorDir = null;
-
+	
+	/**
+	 * @param $dir
+	 * @throws Exception
+	 */
 	public function setSymfonyVendorDir($dir) {
 		if(realpath($dir) === false) {
 			throw new Exception('Symfony directory "' . $dir . '" doesnt exist');
@@ -45,7 +49,10 @@ trait FormHelperTrait
 
 		return $defaultThemes;
 	}
-
+	
+	/**
+	 * @return FormHelper
+	 */
 	public function getFormHelper() {
 		if(!$this->form_helper) {
 			// Set up requirements - hopefully we can facilitate this more in 2.2

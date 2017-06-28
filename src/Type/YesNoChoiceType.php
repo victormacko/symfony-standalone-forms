@@ -6,7 +6,7 @@
  * Time: 12:22 AM
  */
 
-namespace SymfonySmartyStandaloneForms\Type;
+namespace SymfonyStandaloneForms\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
