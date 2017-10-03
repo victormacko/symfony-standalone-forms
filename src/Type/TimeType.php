@@ -31,7 +31,7 @@ class TimeType extends ParentTimeType
 			
 			// handling & conversion of hh:mm am|pm format
 			if(preg_match('/^([0-9]{1,2})[:.,\s]([0-9]{2})\s*(am|pm)$/i', $time, $matches) > 0) {
-				if(strtolower($amPm) == 'am') {
+				if(strtolower($matches[3]) == 'am') {
 					if($matches[1] == '12') {
 						$matches[1] = 0;
 					}
