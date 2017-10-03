@@ -29,6 +29,7 @@ class TimeType extends ParentTimeType
 			
 			$time = str_replace('.', ':', $time);
 			
+			// handling & conversion of hh:mm am|pm format
 			if(preg_match('/^([0-9]{1,2})[:.,\s]([0-9]{2})\s*(am|pm)$/i', $time, $matches) > 0) {
 				if(strtolower($matches[3]) == 'pm') {
 					if ($matches[1] != 12) {
