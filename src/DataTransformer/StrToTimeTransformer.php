@@ -47,6 +47,7 @@ class StrToTimeTransformer implements DataTransformerInterface
 		}
 		
 		$timeStr = null;
+		// handles hh:mm:ss / hh:mm / hh:mm am|pm / hh:mm:ss am|pm / hh,mm / h:mm / h mm / hhmm
 		if(preg_match('/^([0-9]{1,2})[:.,\s]?([0-9]{2})([:.,\s]?([0-9]{2}))?\s?(am|pm)?$/i', $hhmmStr, $matches) > 0) {
 			list($orig, $hour, $minute) = $matches;
 			$seconds = $matches[4] ?? 0;
