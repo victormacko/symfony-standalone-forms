@@ -47,11 +47,15 @@ class StrToTimeTransformer implements DataTransformerInterface
 		}
 		
 		$timeStr = null;
-		// handles hh:mm:ss / hh:mm / hh:mm am|pm / hh:mm:ss am|pm / hh,mm / h:mm / h mm / hhmm
-		if(preg_match('/^([0-9]{1,2})[:.,\s]?([0-9]{2})([:.,\s]?([0-9]{2}))?\s?(am|pm)?$/i', $hhmmStr, $matches) > 0) {
-			list($orig, $hour, $minute) = $matches;
-			$seconds = $matches[4] ?? 0;
-			$amPm = $matches[5] ?? null;
+		// handles hh:mm:ss / hh:mm / hh:mm am|pm / hh:mm:ss am|pm / hh,mm / h:mm / h mm / hhmm / hh am|pm / hham|pm
+		if(preg_match('/^([0-9]{1,2})([:.,\s]?([0-9]{2}))?([:.,\s]?([0-9]{2}))?\s*(am|pm)?$/i', $hhmmStr, $matches) > 0) {
+			list($orig, $hour) = $matches;
+			$minute = $matches[3] ?? 0;
+			if($minute === '') {
+				$minute = 0;
+			}
+			$seconds = $matches[5] ?? 0;
+			$amPm = $matches[6] ?? null;
 			
 			if($seconds >= 60) {
 				$minute += 1;
@@ -81,7 +85,7 @@ class StrToTimeTransformer implements DataTransformerInterface
 			$timeStr =
 				str_pad($hour, 2, '0', STR_PAD_LEFT) .
 				':' .
-				$minute
+				str_pad($minute, 2, '0', STR_PAD_LEFT)
 			;
 		}
 		
